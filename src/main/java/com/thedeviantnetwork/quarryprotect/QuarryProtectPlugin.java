@@ -65,7 +65,7 @@ public class QuarryProtectPlugin extends JavaPlugin {
         saveDefaultConfig();
         this.blocks = getConfig().getStringList("blocks");
         for (String perm : getConfig().getConfigurationSection("limits").getKeys(false)){
-            limits.put(perm, getConfig().getInt("limits." + perm));
+            limits.put("quarryprotect.limit." + perm, getConfig().getInt("limits." + perm));
         }
     }
 
@@ -86,8 +86,8 @@ public class QuarryProtectPlugin extends JavaPlugin {
     }
 
 
-    public boolean isQuarry(Block block){
-        return blocks.contains(block.getType().name() + "!" + block.getData());
+    public boolean isQuarry(ItemStack block){
+        return blocks.contains(block.getType().name() + "!" + block.getData().getData());
     }
 
     public int getLimit(Player player){

@@ -22,7 +22,7 @@ public class PlayerListener implements Listener {
 
     @EventHandler(ignoreCancelled = true)
     public void onPlayerBlockPlace(BlockPlaceEvent event){
-        if (!plugin.isQuarry(event.getBlock()))
+        if (!plugin.isQuarry(event.getItemInHand()))
             return;
 
         QuarryRegionManager quarryRegionManager = plugin.getQuarryRegionManager();
