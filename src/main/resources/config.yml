@@ -1,0 +1,4 @@
+blocks:
+  - STONE:0
+limits:
+  default: 2
