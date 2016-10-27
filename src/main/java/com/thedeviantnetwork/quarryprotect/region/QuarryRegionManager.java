@@ -8,6 +8,7 @@ import com.sk89q.worldguard.protection.managers.RegionManager;
 import com.sk89q.worldguard.protection.managers.storage.StorageException;
 import com.sk89q.worldguard.protection.regions.ProtectedCuboidRegion;
 import com.sk89q.worldguard.protection.regions.ProtectedRegion;
+import com.thedeviantnetwork.quarryprotect.QuarryProtectPlugin;
 import lombok.Getter;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
@@ -25,9 +26,11 @@ public class QuarryRegionManager {
     private final List<QuarryRegion> quarryRegions = new ArrayList<QuarryRegion>();
 
     private WorldGuardPlugin worldGuard;
+    private QuarryProtectPlugin plugin;
 
-    public QuarryRegionManager(WorldGuardPlugin worldGuard){
+    public QuarryRegionManager(WorldGuardPlugin worldGuard, QuarryProtectPlugin plugin){
         this.worldGuard = worldGuard;
+        this.plugin = plugin;
 
         for (World world : Bukkit.getWorlds()) {
            for(ProtectedRegion region : worldGuard.getRegionManager(world).getRegions().values())
@@ -85,7 +88,7 @@ public class QuarryRegionManager {
     public void checkRegionsFor(Player player) {
         for (QuarryRegion region : getRegionList(player)) {
             Location location = BukkitUtil.toLocation(player.getWorld(), region.getBlock());
-            if (location.getBlock().getType() == Material.AIR) {
+            if (!plugin.isQuarry(location.getBlock())) {
                 removeRegion(location);
             }
         }

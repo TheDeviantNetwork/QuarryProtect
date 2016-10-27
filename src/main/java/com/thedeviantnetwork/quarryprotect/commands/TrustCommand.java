@@ -20,7 +20,6 @@ public class TrustCommand implements CommandExecutor {
         this.regionManager = regionManager;
     }
 
-    @Override
     public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {
         if (strings.length == 1){
             Player sender = (Player) commandSender;

@@ -46,7 +46,7 @@ public class QuarryProtectPlugin extends JavaPlugin {
         }
 
         readConfig();
-        this.regionManager = new QuarryRegionManager(worldGuard);
+        this.regionManager = new QuarryRegionManager(worldGuard, this);
         getServer().getPluginManager().registerEvents(new PlayerListener(this), this);
         registerCommands();
     }
@@ -85,6 +85,9 @@ public class QuarryProtectPlugin extends JavaPlugin {
         return returnvalue;
     }
 
+    public boolean isQuarry(Block block){
+        return blocks.contains(block.getType().name() + "!" + block.getData());
+    }
 
     public boolean isQuarry(ItemStack block){
         return blocks.contains(block.getType().name() + "!" + block.getData().getData());

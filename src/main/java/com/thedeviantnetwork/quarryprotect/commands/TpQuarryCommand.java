@@ -21,7 +21,6 @@ public class TpQuarryCommand implements CommandExecutor {
         this.quarryRegionManager = quarryRegionManager;
     }
 
-    @Override
     public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {
         if (strings.length == 1 && commandSender instanceof Player)
             try {
